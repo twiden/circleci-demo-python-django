@@ -68,7 +68,7 @@ jobs:
             - code-and-env-{{ .Branch }}-{{ .Revision }}
       - run:
           command: |
-            pipenv run python manage.py test
+            pylint catalog
 
   build:  
     working_directory: ~/repo
