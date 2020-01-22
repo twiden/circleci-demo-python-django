@@ -65,7 +65,7 @@ jobs:
             - code-and-env-{{ .Branch }}-{{ .Revision }}
       - run:
           command: |
-            pylint catalog
+            pylint templates
 
   build:  
     working_directory: ~/repo
