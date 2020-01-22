@@ -24,13 +24,10 @@ jobs:
           POSTGRES_USER: root
           POSTGRES_DB: circle_test
     steps:
-      - restore_cache:
-          keys:
-            - source-code-{{ .Branch }}-{{ .Revision }}-{{ .BuildNum }}
       - run: sudo chown -R circleci:circleci /usr/local/bin
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
       - restore_cache:
-          key: deps10-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+          key: source-code-{{ .Branch }}-{{ .Revision }}-{{ .BuildNum }}
       - run:
           command: |
             sudo pip install pipenv
