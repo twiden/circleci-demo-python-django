@@ -13,6 +13,7 @@ gunicorn = "*"
 "psycopg2" = "*"
 whitenoise = "*"
 unittest-xml-reporting = "*"
+pytest = "*"
 
 
 [dev-packages]
