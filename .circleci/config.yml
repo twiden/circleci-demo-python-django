@@ -30,6 +30,7 @@ jobs:
           key: source-code-{{ .Branch }}-{{ .Revision }}-{{ .BuildNum }}
       - run:
           command: |
+            ls -lah
             sudo pip install pipenv
             pipenv install
       - save_cache:
