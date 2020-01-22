@@ -8,9 +8,9 @@ jobs:
     steps:
       - checkout
       - run:
-        command: |
-          pwd
-          ls -lah
+          command: |
+            pwd
+            ls -lah
       - save_cache:
           key: source-code-{{ .Branch }}-{{ .Revision }}-{{ .BuildNum }}
           paths:
