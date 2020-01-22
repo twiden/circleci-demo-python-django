@@ -7,10 +7,6 @@ jobs:
       - image: circleci/python:3.6.4
     steps:
       - checkout
-      - run:
-          command: |
-            pwd
-            ls -lah
       - save_cache:
           key: source-code-{{ .Branch }}-{{ .Revision }}
           paths:
@@ -34,8 +30,6 @@ jobs:
           key: source-code-{{ .Branch }}-{{ .Revision }}
       - run:
           command: |
-            pwd
-            ls -lah
             sudo pip install pipenv
             pipenv install
       - save_cache:
