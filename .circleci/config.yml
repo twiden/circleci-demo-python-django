@@ -8,7 +8,7 @@ jobs:
     steps:
       - checkout
       - save_cache:
-          key: source-code-{{ .Branch }}-{{ .Revision }}
+          key: source-code-{{ .Branch }}-{{ .Revision }}-{{ .BuildNum }}
           paths:
             - ~/repo
 
@@ -26,7 +26,7 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - source-code-{{ .Branch }}-{{ .Revision }}
+            - source-code-{{ .Branch }}-{{ .Revision }}-{{ .BuildNum }}
       - run: sudo chown -R circleci:circleci /usr/local/bin
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
       - restore_cache:
@@ -36,7 +36,7 @@ jobs:
             sudo pip install pipenv
             pipenv install
       - save_cache:
-          key: code-and-env-{{ .Branch }}-{{ .Revision }}
+          key: code-and-env-{{ .Branch }}-{{ .Revision }}-{{ .BuildNum }}
           paths:
             - '~/repo'
             - '/usr/local/bin'
@@ -51,7 +51,7 @@ jobs:
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
       - restore_cache:
           keys:
-            - code-and-env-{{ .Branch }}-{{ .Revision }}
+            - code-and-env-{{ .Branch }}-{{ .Revision }}-{{ .BuildNum }}
       - run:
           command: |
             pipenv run python manage.py test
@@ -65,7 +65,7 @@ jobs:
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
       - restore_cache:
           keys:
-            - code-and-env-{{ .Branch }}-{{ .Revision }}
+            - code-and-env-{{ .Branch }}-{{ .Revision }}-{{ .BuildNum }}
       - run:
           command: |
             pylint catalog
@@ -79,7 +79,7 @@ jobs:
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.6/site-packages
       - restore_cache:
           keys:
-            - code-and-env-{{ .Branch }}-{{ .Revision }}
+            - code-and-env-{{ .Branch }}-{{ .Revision }}-{{ .BuildNum }}
       - run:
           name: Build docker image
           command: |
